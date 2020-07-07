@@ -6,7 +6,75 @@
         xmlns:local="clr-namespace:Zadatak_1.View"
         mc:Ignorable="d"
         Title="EmployeeView" Height="450" Width="800">
+    <Window.Resources>
+       
+    </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
         
+       
+
+        <DataGrid Grid.Row="1" Name="DataGridResults"
+                  ItemsSource="{Binding OrderList, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedOrder,UpdateSourceTrigger=PropertyChanged}"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  AutoGenerateColumns="False"
+                  HorizontalGridLinesBrush="Black"
+                  BorderBrush="Black"
+                  Foreground="Black"
+                  FontWeight="Bold">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Product"
+                                    Binding="{Binding tblProducts.ProductName}" />
+                <DataGridTextColumn Header="Price"
+                                    Binding="{Binding tblProduct.Price}" />
+
+                <DataGridTextColumn Header="Username"
+                                    Binding="{Binding tblOrder.Username}" />
+
+                <DataGridTextColumn Header="Date"
+                                    Binding="{Binding tblOrder.OrderDate}" />
+                <DataGridTextColumn Header="Status"
+                                    Binding="{Binding tblOrder.OrderStatus}" />
+
+
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnConfirmOrder" Content="Confirm" 
+                                Command="{Binding DataContext.ConfirmOrder, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
+                                        Margin="4" FontWeight="Bold"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnRejectOrder" Content="Reject" 
+                                Command="{Binding DataContext.RejectOrder, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
+                                        Margin="4" FontWeight="Bold"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnDeleteOrder" Content="Delete" 
+                                Command="{Binding DataContext.DeleteOrder, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
+                                        Margin="4" FontWeight="Bold"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
+ 
 </Window>

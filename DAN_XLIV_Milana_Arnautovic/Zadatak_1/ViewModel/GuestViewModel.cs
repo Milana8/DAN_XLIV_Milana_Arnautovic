@@ -239,42 +239,7 @@ namespace Zadatak_1.ViewModel
         }
 
 
-        private ICommand orderCommand;
-        public ICommand OrderCommand
-        {
-            get
-            {
-                if (orderCommand == null)
-                {
-                    orderCommand = new RelayCommand(param => OrderCommandExecute(), param => CanOrderCommandExecute());
-                }
-                return orderCommand;
-            }
-        }
-
-        private void OrderCommandExecute()
-        {
-            try
-            {
-                OrderView orderView = new OrderView();
-                orderView.ShowDialog();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
        
-        private bool CanOrderCommandExecute()
-        {
-            if (!orderProduct.Any())
-            {
-                return false;
-            }
-            return true;
-        }
         #endregion
     }
 }

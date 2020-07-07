@@ -99,9 +99,6 @@
     <Compile Include="Model\vwOrder.cs">
       <DependentUpon>DAN_XLIV_DB.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\OrderView.xaml.cs">
-      <DependentUpon>OrderView.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -120,10 +117,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\GuestView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\OrderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
