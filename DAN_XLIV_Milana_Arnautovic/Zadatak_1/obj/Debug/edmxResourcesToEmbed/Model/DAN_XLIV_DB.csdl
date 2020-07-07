@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DAN_XLIVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblOrder">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="OrderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Username" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.FK__tblOrders__Produ__398D8EEE" FromRole="tblOrders" ToRole="tblProducts" />
+  </EntityType>
+  <EntityType Name="tblProduct">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblOrders" Relationship="Self.FK__tblOrders__Produ__398D8EEE" FromRole="tblProducts" ToRole="tblOrders" />
+  </EntityType>
+  <EntityType Name="vwOrder">
+    <Key>
+      <PropertyRef Name="OrderId" />
+      <PropertyRef Name="Quantity" />
+      <PropertyRef Name="OrderDate" />
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Username" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="TotalPrice" Type="Int32" />
+  </EntityType>
+  <Association Name="FK__tblOrders__Produ__398D8EEE">
+    <End Role="tblProducts" Type="Self.tblProduct" Multiplicity="0..1" />
+    <End Role="tblOrders" Type="Self.tblOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProducts">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="tblOrders">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DAN_XLIVEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblOrders" EntityType="Self.tblOrder" />
+    <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
+    <EntitySet Name="vwOrders" EntityType="Self.vwOrder" />
+    <AssociationSet Name="FK__tblOrders__Produ__398D8EEE" Association="Self.FK__tblOrders__Produ__398D8EEE">
+      <End Role="tblProducts" EntitySet="tblProducts" />
+      <End Role="tblOrders" EntitySet="tblOrders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
