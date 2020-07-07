@@ -15,25 +15,28 @@ namespace Zadatak_1.ViewModel
     {
 
         MainWindow main;
+        public MainWindowViewModel()
+        {
 
+        }
         public MainWindowViewModel(MainWindow mainOpen)
         {
             main = mainOpen;
         }
-
         private string username;
         public string Username
         {
-            get { return username; }
+            get
+            {
+                return username;
+            }
             set
             {
                 username = value;
                 OnPropertyChanged("Username");
             }
         }
-
         private string password;
-
         public string Password
         {
             get
@@ -47,8 +50,6 @@ namespace Zadatak_1.ViewModel
             }
         }
 
-        #region Commands
-
         private ICommand login;
         public ICommand Login
         {
@@ -56,45 +57,44 @@ namespace Zadatak_1.ViewModel
             {
                 if (login == null)
                 {
-                    login = new RelayCommand(LoginExecute);
-                    return login;
+                    login = new RelayCommand(LoginExecute, CanLoginExecute);
                 }
                 return login;
             }
         }
-
-
+       
         private void LoginExecute(object o)
         {
             try
             {
                 string password = (o as PasswordBox).Password;
-
-                if (JMBGisValid(Username) && password == "Guest")
+                if (Username == "Zaposleni" && Password == "Zaposleni")
                 {
-                    GuestView guest = new GuestView();
-                    main.Close();
-                    guest.Show();
+                    EmployeeView employee = new EmployeeView();
+                    employee.ShowDialog();
                     
                 }
-                else if (Username == "Employee" && password == "Employee")
+                
+                else if (JMBGisValid(Username) && Password == "Gost")
                 {
-                    //EmployeeView
+                    GuestView guest = new GuestView();
+                    guest.ShowDialog();
                 }
+               
                 else
                 {
-                    MessageBox.Show("Username or password not correct");
+                    MessageBox.Show("Invalid parametres.");
                 }
             }
-
             catch (Exception ex)
             {
+
                 MessageBox.Show(ex.ToString());
+
             }
         }
-
-
-        private bool CanLoginExecute()
+       
+        private bool CanLoginExecute(object o)
         {
             if (String.IsNullOrEmpty(Password) || String.IsNullOrEmpty(Username))
             {
@@ -126,7 +126,7 @@ namespace Zadatak_1.ViewModel
             return true;
         }
 
-        #endregion
+
 
 
         /// <summary>
@@ -206,5 +206,6 @@ namespace Zadatak_1.ViewModel
         }
     }
 }
+
 
 

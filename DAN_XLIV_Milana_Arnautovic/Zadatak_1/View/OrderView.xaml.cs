@@ -11,19 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Zadatak_1.ViewModel;
 
 namespace Zadatak_1.View
 {
     /// <summary>
-    /// Interaction logic for GuestView.xaml
+    /// Interaction logic for OrderView.xaml
     /// </summary>
-    public partial class GuestView : Window
+    public partial class OrderView : Window
     {
-        public GuestView()
+        public OrderView()
         {
             InitializeComponent();
-            this.DataContext = new GuestViewModel(this);
         }
     }
 }

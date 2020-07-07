@@ -6,7 +6,83 @@
         xmlns:local="clr-namespace:Zadatak_1.View"
         mc:Ignorable="d"
         Title="GuestView" Height="450" Width="800">
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="6" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="6" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Button Command="{Binding ShowProducts}" Grid.Row="1"
+                   Content="Show products" Margin="0,0,611.6,0.4" Grid.Column="1"/>
+        <DataGrid Grid.Row="2" Grid.Column="1"
+                  Name="DataGridMenu"
+                  ItemsSource="{Binding ProductList, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedProduct,UpdateSourceTrigger=PropertyChanged}"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  AutoGenerateColumns="False"
+                  Visibility="{Binding ViewProduct, UpdateSourceTrigger=PropertyChanged}"
+                  HorizontalGridLinesBrush="Black"
+                 >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product"
+                                    Binding="{Binding ProductName}" />
+                <DataGridTextColumn Header="Price"
+                                    Binding="{Binding Price}" />
+                <DataGridTemplateColumn Header="Quantity">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Path=Order.Quantity,
+                                     RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}},
+                                     UpdateSourceTrigger=PropertyChanged}" Width="50"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="80"
+                                    Height="30"
+                                    Command="{Binding Path=DataContext.AddToOrder, RelativeSource= {RelativeSource FindAncestor,
+                                       AncestorType={x:Type DataGrid}},UpdateSourceTrigger=PropertyChanged}"
+                                    Content="Add to order" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Grid.Row="4"
+               Grid.Column="1"
+               Name="lblTotalPrice"
+               Content="Total Price:" 
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               FontWeight="Bold"
+               Width="90" Margin="323,3.2,0,1.2"/>
+        <TextBlock Grid.Row="4"
+               Name="lblTotal"
+               Text="{Binding TotalPrice}"
+               Margin="10,11.2,99.6,3.2"
+               VerticalAlignment="Center"
+               FontWeight="Black" Grid.ColumnSpan="2" />
+        <StackPanel Grid.Row="6" Grid.Column="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <Button Command="{Binding OrderCommand}"
+                    Content="Confirm Order" Width="125" Margin="0,6,10,6.4"/>
+            <Button Command="{Binding Close}"
+                    Content="Close" Margin="0,6,10,6.4" Width="125" />
+        </StackPanel>
     </Grid>
 </Window>

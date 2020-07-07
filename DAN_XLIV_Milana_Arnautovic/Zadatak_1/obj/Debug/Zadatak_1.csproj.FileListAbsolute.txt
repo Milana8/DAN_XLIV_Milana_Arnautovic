@@ -21,3 +21,7 @@ C:\Users\Korisnik\Desktop\DAN_XLIV_Milana_Arnautovic\DAN_XLIV_Milana_Arnautovic\
 C:\Users\Korisnik\Desktop\DAN_XLIV_Milana_Arnautovic\DAN_XLIV_Milana_Arnautovic\Zadatak_1\bin\Debug\EntityFramework.xml
 C:\Users\Korisnik\Desktop\DAN_XLIV_Milana_Arnautovic\DAN_XLIV_Milana_Arnautovic\Zadatak_1\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Korisnik\Desktop\DAN_XLIV_Milana_Arnautovic\DAN_XLIV_Milana_Arnautovic\Zadatak_1\obj\Debug\Zadatak_1.csproj.CopyComplete
+C:\Users\Korisnik\Desktop\DAN_XLIV_Milana_Arnautovic\DAN_XLIV_Milana_Arnautovic\Zadatak_1\obj\Debug\View\EmployeeView.g.cs
+C:\Users\Korisnik\Desktop\DAN_XLIV_Milana_Arnautovic\DAN_XLIV_Milana_Arnautovic\Zadatak_1\obj\Debug\View\OrderView.g.cs
+C:\Users\Korisnik\Desktop\DAN_XLIV_Milana_Arnautovic\DAN_XLIV_Milana_Arnautovic\Zadatak_1\obj\Debug\View\EmployeeView.baml
+C:\Users\Korisnik\Desktop\DAN_XLIV_Milana_Arnautovic\DAN_XLIV_Milana_Arnautovic\Zadatak_1\obj\Debug\View\OrderView.baml
